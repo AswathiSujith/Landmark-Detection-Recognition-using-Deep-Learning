@@ -118,15 +118,7 @@ def extract_embedding(image_path, model, device="cpu"):
     return model(img_t).cpu().numpy()
 ```
 
-## 🧮 Model Details
 
-| Model Type | Backbone | Embedding Dim | Pooling | Loss Function | Key Features |
-|-------------|-----------|----------------|----------|----------------|----------------|
-| **Server Model** | ResNet-50 | 512-D | GeM (Generalized Mean) | ArcFace | High accuracy, robust feature embeddings |
-| **Transformer Model** | ViT-B/16 | 512-D | GeM | Contrastive | Better global context and reasoning |
-| **Edge/Mobile Model** | MobileNet-V3 | 256-D | GeM | Softmax | Lightweight, optimized for mobile/edge inference |
-
-**Training Configuration**
 ## 🧮 Model Details
 
 | Model Type | Backbone | Embedding Dim | Pooling | Loss Function | Key Features |
@@ -151,7 +143,8 @@ MetricResultTop-1 Accuracy70%+mAP75%+GPU Latency~200 msCPU Latency~900 ms
 The model demonstrates robust retrieval and classification even under variations in lighting, scale, and viewpoint.
 
 ## 🚀 Deployment
-Server API Example:
+**Server API Example:**
+```http
 POST /v1/landmarks:detect
 Content-Type: application/json
 
@@ -159,14 +152,17 @@ Content-Type: application/json
   "image_b64": "<base64_image>",
   "top_k": 5
 }
+```
 
 **Response:**
+```json
 {
   "label": "taj_mahal",
   "confidence": 0.91,
   "neighbors": [{"id": "img123", "score": 0.86}],
   "decision": "known"
 }
+```
 
 **Infrastructure:**
 
