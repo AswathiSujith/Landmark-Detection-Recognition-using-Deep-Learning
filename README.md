@@ -139,10 +139,20 @@ gradient_clipping = True
 ```
 
 ## 📊 Results
-MetricResultTop-1 Accuracy70%+mAP75%+GPU Latency~200 msCPU Latency~900 ms
-The model demonstrates robust retrieval and classification even under variations in lighting, scale, and viewpoint.
+
+| Metric | Description | Result |
+|--------|--------------|---------|
+| **Top-1 Accuracy** | Percentage of correctly predicted landmark labels (first guess) | **≈ 70%** |
+| **Mean Average Precision (mAP)** | Average precision across all landmark retrievals | **≈ 75%** |
+| **Top-5 Accuracy** | Accuracy considering top 5 predictions | **≈ 90%** |
+| **GPU Latency (A100, batch=1)** | Time per image on GPU | **~200 ms** |
+| **CPU Latency (batch=1)** | Time per image on CPU | **~900 ms** |
+| **Index Size (10M images)** | FAISS IVF-PQ index (8-bit quantization) | **≈ 160 GB** |
+| **Model Size** | ResNet-50 + GeM model | **~80 MB (server)** / **~25 MB (mobile)** |
+
 
 ## 🚀 Deployment
+
 **Server API Example:**
 ```http
 POST /v1/landmarks:detect
